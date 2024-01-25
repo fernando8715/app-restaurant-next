@@ -16,21 +16,40 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Con Prisma y Next es posible crear aplicaciones Full-stack sin necesidad de una Api, interactuando directamente con una base de datos 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## comandos de prisma
+- npx init
+- npx prisma migratedev     Cada vez que creamos un modelo se debe migrar la base de datos para que esta se sincronice con el schema, hay que colocar una descrición de la migración
+- npx prisma migrate reset  resetea la base de datos, borra los datos pero no borra el schema
+-npx prisma studio  abre una GUI de la base de datos
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## crear datos masivos
+1. instala el paquete de ts-node con el comando    npm i ts-node
+2. configura el archivo package.json, debajo del objeto scrips crea un nuevo objeto, colocale el nombre de prisma, y dentro de los corchetes coloca el nombre del comando con que vas a llamar esa instrucción y seguido colocas los pasos a seguir por el comando. a continuación esta como debe quedar
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
 
-## Deploy on Vercel
+3. crea una carpeta data dentro de la carpeta prisma
+4. en esa nueva carpeta crea un archivo con el nombre en plural del schema a ingresarle datos con la extension ts.  ejemplo productos.ts
+5. crea una constante de tipo array y dentro de ella coloca objetos con la información especificada en el schema, e ingresa los datos
+6. crea dentro de la carpeta prisma un archivo seed.ts.
+    - Importa el archivo que contiene los datos a cargar
+    - Importa el PrismaClient de @prisma/client
+    - crea una constante que reciba una instancia de PrismaClient. 
+        const prisma = new PrismaClient() 
+    - crea una funcion async y dentro del cuerpo de la funcion coloca un try catch, dentro del try coloca await prisma.<<nombre del modelo>>.createMany({ data: <<nombre de la data>>});
+    - ejecuta la funcion <<nombre funcion>>();
+    - cada vez que se ejecute el comando "npx prisma db seed" va a llamarse esta funcion y va a crear los datos de forma masiva
+    - para las diferentes funcionalidades del CRUD puedes ver en la documentacion de prisma.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## PrismaClient siempre se debe importar cada vez que vayas a consultar la base de datos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Node es un lenguaje hibrido en donde una parte se ejecuta en el servidor y la otra en el cliente. 
+
+## Consultar la base de datos con 
+
