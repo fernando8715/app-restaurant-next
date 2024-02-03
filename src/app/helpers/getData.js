@@ -32,6 +32,20 @@ export const getDataCategorias = async () => {
     }
 }
 
+export const getDataCategoriasId = async (id) => {
+    const prisma = new PrismaClient();
+    try {
+        const categorias = await prisma.categoria.findMany();
+        return {
+            props: {
+                categorias,
+            },
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getDataProductos = async(id)=>{
     const prisma = new PrismaClient();
     try {
@@ -49,3 +63,4 @@ export const getDataProductos = async(id)=>{
         console.log(error);
     }
 }
+

@@ -1,16 +1,30 @@
 'use client'
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({children})=>{
 
-    const [productoState, setProductoState] = useState({});
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaActual, setCategoriaActual] = useState({id:1, nombre: 'Café', icono:'cafe'});
     const [modal, setModal] = useState(false);
 
-    const handleClickProducto = (producto)=>{
-        setProductoState(producto)
+    const obtenerCategorias = async()=>{
+        const {data} = await axios('/api');
+        setCategorias(data);
+        // setCategoriaActual(data[0])
+    }
+
+    useEffect(()=>{
+        obtenerCategorias();
+    }, [])
+
+
+    const handleClickCategoria = (id)=>{
+        const categoria = categorias.filter(c => c.id === id);
+        setCategoriaActual(categoria[0]);
     }
 
     const handleClickModal = ()=>{
@@ -19,7 +33,9 @@ const QuioscoProvider = ({children})=>{
 
     return (
         <QuioscoContext.Provider value={{
-            handleClickProducto,
+            categorias,
+            categoriaActual,
+            handleClickCategoria,
             handleClickModal,
             modal,
         }}>

@@ -1,28 +1,32 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import useQuiosco from "../hooks/useQuiosco";
 
 const Categoria = ({ categoria }) => {
 
     const { id, nombre, icono } = categoria;
-    const pathname = usePathname();
-
-    const active = pathname === `/productos/${icono}`;
+    const { categoriaActual, handleClickCategoria } = useQuiosco();
 
     return (
         <>
             <Link
-                className={`flex items-center border gap-5 p-3 hover:bg-amber-400 text-lg lg:text-xl font-bold ${active ? 'bg-amber-400' : ''}`}
-                href={`/productos/${icono}`}
+                href={`/${icono}`}
             >
-                <Image
-                    src={`/assets/img/icono_${icono}.svg`}
-                    alt={`icono del producto ${nombre}`}
-                    width={50}
-                    height={50}
-                />
-                {nombre}
+                <button
+                    type="button"
+                    onClick={() => handleClickCategoria(id)}
+                    className={`flex w-full items-center border gap-5 p-3 hover:bg-amber-400 text-lg lg:text-xl font-bold ${categoriaActual.id === id ? 'bg-amber-400' : ''} `}
+                >
+                    <Image
+                        src={`/assets/img/icono_${icono}.svg`}
+                        alt={`icono del producto ${nombre}`}
+                        width={50}
+                        height={50}
+                    />
+                    {nombre}
+                </button>
+
             </Link>
         </>
     )

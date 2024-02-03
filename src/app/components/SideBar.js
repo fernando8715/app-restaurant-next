@@ -18,10 +18,10 @@ const SideBar = async () => {
         />
       </div>
       {categorias?.map(categoria => (
-        <Categoria
-          key={categoria.id}
-          categoria={categoria} />
-      ))}
+          <Categoria
+            key={categoria.id}
+            categoria={categoria} />
+        ))}
     </div>
   )
 }
