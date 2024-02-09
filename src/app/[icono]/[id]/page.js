@@ -15,7 +15,7 @@ const Productos = async ({ params: { icono, id } }) => {
                     <h2 className="text-xl md:text-4xl font-bold mb-5">{productoSeleccionado?.nombre}</h2>
                 </div>
                 <Image
-                    alt={productoSeleccionado.nombre}
+                    alt={productoSeleccionado?.nombre}
                     src={`/assets/img/${productoSeleccionado?.imagen}.jpg`}
                     width={300}
                     height={400}
@@ -23,11 +23,9 @@ const Productos = async ({ params: { icono, id } }) => {
                 />
 
                 <div className="bg-white text-center mt-3">
-                    <p className="text-xl font-semibold">{productoSeleccionado.nombre}</p>
+                    <p className="text-xl font-semibold">{productoSeleccionado?.nombre}</p>
                 </div>
             </div>
-
-            {/* <ListaProductos productos={productos}/> */}
         </div>
     )
 }

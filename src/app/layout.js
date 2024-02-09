@@ -5,6 +5,7 @@ import '@fontsource/roboto/900.css';
 import "./globals.css";
 import SideBar from "./components/SideBar";
 import { QuioscoProvider } from "./context/QuioscoProvider";
+import Pasos from "./components/Pasos";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +27,8 @@ export default function RootLayout({ children }) {
               </aside>
 
             <main className='md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll'>
-              <div className="m-10">
+              <div className="m-2 mt-10 sm:m-12 sm:mt-8 sm:mb-5">
+                <Pasos />
                 {children}
               </div>
             </main>

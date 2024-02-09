@@ -15,6 +15,7 @@ const SideBar = async () => {
           alt="Imagen logotipo de coffee shop"
           width={150}
           height={100}
+          style={{width:150, height:100}}
         />
       </div>
       {categorias?.map(categoria => (

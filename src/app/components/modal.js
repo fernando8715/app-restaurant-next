@@ -2,12 +2,14 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import useQuiosco from "../hooks/useQuiosco";
 
 const Modal = () => {
-
-  const searchParams = useSearchParams();
-  const modal = searchParams.get("modal");
+  const {modal,  handleClickModal } = useQuiosco();
   const pathname = usePathname();
+
+  // const searchParams = useSearchParams();
+  // const searchModal = searchParams.get("modal");
 
   return (
     <>
@@ -18,7 +20,12 @@ const Modal = () => {
               <h3>Contenido del modal</h3>
               <br />
               <Link href={pathname}>
-                <button type="button" className="bg-red-500 text-white p-2">Cerrar Modal</button>
+                <button
+                  type="button"
+                  className="bg-red-500 text-white p-2"
+                  onClick={handleClickModal}
+                >Cerrar Modal
+                </button>
               </Link>
             </div>
           </div>

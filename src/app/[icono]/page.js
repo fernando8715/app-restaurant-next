@@ -21,7 +21,6 @@ const Categoria = async ({ params: { icono } }) => {
 
     return (
         <>
-            <h1 className="text-4xl font-bold mb-10">Selecciona tu pedido</h1>
             <ListaProductos productos={categoria.productos} />
         </>
     )
