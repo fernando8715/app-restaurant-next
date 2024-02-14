@@ -35,15 +35,18 @@ const Pasos = () => {
     return (
         <>
             <div className="flex justify-between mb-1">
-                {pasos.map(paso => (
-                    <Link
-                        className="sm:text-sm md:text-base lg:text-xl font-semibold md:font-bold"
-                        key={paso.paso}
-                        href={paso.url}
-                    >
-                        {paso.nombre}
-                    </Link>
-                ))}
+                {pasos.map(paso => {
+
+                    return (
+                        <Link
+                            className="sm:text-sm md:text-base lg:text-xl font-semibold md:font-bold"
+                            key={paso.paso}
+                            href={paso.url}
+                        >
+                            {paso.nombre}
+                        </Link>
+                    )
+                })}
             </div>
             <div className="rounded-full bg-amber-500 h-2 mb-5 lg:mb-10" style={{ width: `${progreso}%` }}></div>
         </>

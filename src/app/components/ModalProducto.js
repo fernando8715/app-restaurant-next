@@ -37,17 +37,18 @@ const ModalProducto = ({ producto }) => {
 
 
     return (
-        <div className="md:flex gap-5 bg-white p-3">
+        <div className="md:flex gap-5 bg-white p-3 border rounded-md shadow-lg">
             <div className="md:w-1/3">
                 <Image
                     src={`/assets/img/${imagen}.jpg`}
                     alt={`Imagen del producto ${nombre}`}
-                    width={300}
+                    width={200}
                     height={200}
+                    className="mx-auto"
                 />
             </div>
             <div className="md:w-2/3 flex flex-col justify-evenly items-start">
-                <h2 className="md:text-xl lg:text-2xl font-bold mt-0">{nombre}</h2>
+                <h2 className="text-sm md:text-xl lg:text-2xl font-bold mt-0">{nombre}</h2>
                 <p className="font-black lg:text-xl text-amber-500">{formatearDinero(precio)}</p>
 
                 <div className="flex gap-5">
@@ -65,12 +66,12 @@ const ModalProducto = ({ producto }) => {
                 </div>
                 <button
                     type="button"
-                    className="uppercase font-bold w-full bg-amber-500 hover:bg-amber-700 p-2 text-white"
+                    className="text-base uppercase font-bold w-full bg-amber-500 hover:bg-amber-700 p-1 md:p-2 mt-2 text-white"
                     onClick={() => {
                         handleClickAgregar({ ...producto, cantidad })
                         handleClickModal();
                     }}
-                >Añadir al pedido {/* //${edicion ? 'Guardar cambios' : 'Añadir al pedido'}  */}
+                >Añadir {/* //${edicion ? 'Guardar cambios' : 'Añadir al pedido'}  */}
                 </button>
             </div>
 
