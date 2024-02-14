@@ -10,7 +10,6 @@ const Total = () => {
   
   const comprobarPedido = ()=> {
     return pedido.length === 0 || nombre === '' || nombre.length < 3;
-    // return pedido.length === 0 || confirmarPedido || nombre === '' || nombre.length < 3;
   }
 
   useEffect(()=>{

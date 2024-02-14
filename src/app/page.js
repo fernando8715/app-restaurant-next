@@ -1,16 +1,23 @@
+'use client'
 import { Suspense } from "react"
-import { getDataCategoriasFull } from "./helpers/getData";
-import ListaProductos from "./components/ListaProductos";
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
-const page = async () => {
 
-  const { props } = await getDataCategoriasFull();
-  const { categorias } = props;
+const page = () => {
+
+  const route = useRouter()
+
+  useEffect(()=>{
+    const irMenu = ()=>{
+      route.push('/cafe')
+    }
+    irMenu();
+  }, [])
 
   return (
     <>
       <Suspense fallback={<div>Cargando</div>}>
-        <ListaProductos productos={categorias[0].productos} />
       </Suspense>
     </>
   )
