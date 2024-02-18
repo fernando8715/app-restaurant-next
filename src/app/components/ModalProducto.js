@@ -4,11 +4,13 @@ import Image from "next/image"
 import { useEffect, useState } from "react";
 import { formatearDinero } from "../helpers";
 import useQuiosco from "../hooks/useQuiosco";
+import { toast } from "react-toastify";
 
 
 const ModalProducto = ({ producto }) => {
     const { handleClickAgregar, handleClickModal, pedido } = useQuiosco();
     const [cantidad, setCantidad] = useState(1);
+    // const [edicion, setEdicion] = useState(false);
 
     useEffect(() => {
       if(pedido.some(p => p.id === producto.id)){
@@ -70,8 +72,14 @@ const ModalProducto = ({ producto }) => {
                     onClick={() => {
                         handleClickAgregar({ ...producto, cantidad })
                         handleClickModal();
+                        toast.success("Producto agregado con exito!", {
+                            autoClose: 2500,
+                            theme: "dark",
+                        });
+                    
                     }}
-                >Añadir {/* //${edicion ? 'Guardar cambios' : 'Añadir al pedido'}  */}
+                >Añadir al pedido
+                    {/* {`${edicion ? 'Guardar cambios' : 'Añadir al pedido'}`} */}
                 </button>
             </div>
 

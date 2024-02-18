@@ -6,7 +6,9 @@ import { formatearDinero } from "../helpers";
 
 const Total = () => {
 
-  const { pedido, colocarOrden, confirmarPedido, nombre, setNombre, total } = useQuiosco();
+  const { pedido, colocarOrden, nombre, setNombre, total } = useQuiosco();
+
+  
   
   const comprobarPedido = ()=> {
     return pedido.length === 0 || nombre === '' || nombre.length < 3;

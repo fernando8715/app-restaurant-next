@@ -1,8 +1,8 @@
 'use client'
 import Image from "next/image";
+import Link from "next/link";
 import { formatearDinero } from "../helpers";
 import useQuiosco from "../hooks/useQuiosco";
-import Link from "next/link";
 
 // configurar el modal
 

@@ -1,8 +1,9 @@
 'use client'
-
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
 
 const QuioscoContext = createContext();
 
@@ -12,7 +13,6 @@ const QuioscoProvider = ({ children }) => {
     const [categoriaActual, setCategoriaActual] = useState({icono:'cafe'});
     const [pedido, setPedido] = useState([]);
     const [modal, setModal] = useState(false);
-    const [confirmarPedido, setConfirmarPedido] = useState(false);
     const [nombre, setNombre] = useState('');
     const [total, setTotal] = useState(0);
 
@@ -27,7 +27,7 @@ const QuioscoProvider = ({ children }) => {
 
     useEffect(() => {
         obtenerCategorias();
-    }, [])
+    }, []);
 
     useEffect(() => {
         const calcularTotalPedido = pedido.reduce((total, producto) =>
@@ -35,7 +35,6 @@ const QuioscoProvider = ({ children }) => {
 
         setTotal(calcularTotalPedido)
     }, [pedido])
-
 
     const handleClickCategoria = (id) => {
         const categoria = categorias.filter(c => c.id === id);
@@ -73,24 +72,25 @@ const QuioscoProvider = ({ children }) => {
         setPedido(pedidoActualizado);
     }
 
-    const handleConfirmarPedido = () => {
-        setConfirmarPedido(!confirmarPedido);
-    }
-
     const colocarOrden = async (e) => {
         e.preventDefault();
-        handleConfirmarPedido();
+        // handleConfirmarPedido();
+        toast.success("Pedido exitoso!", {
+            autoClose: 2500,
+            theme: "dark",
+        });
+    
 
         try {
             await axios.post('/api/ordenes', { pedido, nombre, total, fecha: Date.now().toString() });
-
+            
             // Reset app
             setCategoriaActual(categorias[0]);
             setPedido([]);
-            setConfirmarPedido(false);
             setNombre('');
             setTotal(0);
 
+            
             setTimeout(() => {
                 router.push('/cafe')
             }, 3000);
@@ -114,8 +114,6 @@ const QuioscoProvider = ({ children }) => {
             modal,
             handleEditarCantidadProducto,
             handleEliminarProducto,
-            handleConfirmarPedido,
-            confirmarPedido,
             nombre,
             setNombre,
             colocarOrden,

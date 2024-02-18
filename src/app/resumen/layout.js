@@ -1,4 +1,5 @@
 import React from 'react'
+import { ToastContainer} from 'react-toastify';
 import Pasos from '../components/Pasos'
 import SideBar from '../components/SideBar'
 
@@ -15,6 +16,7 @@ const LayoutResumen = ({ children }) => {
                     {children}
                 </div>
             </main>
+            <ToastContainer />
         </>
     )
 }

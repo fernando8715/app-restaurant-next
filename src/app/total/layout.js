@@ -1,6 +1,8 @@
-import React from 'react'
-import Pasos from '../components/Pasos'
-import SideBar from '../components/SideBar'
+import React from 'react';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Pasos from '../components/Pasos';
+import SideBar from '../components/SideBar';
 
 const LayoutTotal = ({ children }) => {
     return (
@@ -15,6 +17,7 @@ const LayoutTotal = ({ children }) => {
                     {children}
                 </div>
             </main>
+            <ToastContainer />
         </>
     )
 }

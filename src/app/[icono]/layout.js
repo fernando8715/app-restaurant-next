@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Pasos from "../components/Pasos";
 import SideBar from "../components/SideBar";
 
@@ -14,6 +16,7 @@ export default function Layout({ modal, children }) {
           {modal}
           {children}
         </div>
+        <ToastContainer />
       </main>
     </>
   );

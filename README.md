@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -19,15 +17,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Con Prisma y Next es posible crear aplicaciones Full-stack sin necesidad de una Api, interactuando directamente con una base de datos 
 
 ## comandos de prisma
-- npx init
-- npx prisma migratedev     Cada vez que creamos un modelo se debe migrar la base de datos para que esta se sincronice con el schema, hay que colocar una descrición de la migración
+- npx init    Inicia la base de datos
+- npx prisma migrate dev     Cada vez que creamos un modelo se debe migrar la base de datos para que esta se sincronice con el schema, hay que colocar una descrición de la migración
 - npx prisma migrate reset  resetea la base de datos, borra los datos pero no borra el schema
 -npx prisma studio  abre una GUI de la base de datos
 
 
 
 ## crear datos masivos
-1. instala el paquete de ts-node con el comando    npm i ts-node
+1. instala el paquete de ts-node con el comando ->   npm i ts-node
 2. configura el archivo package.json, debajo del objeto scrips crea un nuevo objeto, colocale el nombre de prisma, y dentro de los corchetes coloca el nombre del comando con que vas a llamar esa instrucción y seguido colocas los pasos a seguir por el comando. a continuación esta como debe quedar
 
  "prisma": {
@@ -51,5 +49,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Node es un lenguaje hibrido en donde una parte se ejecuta en el servidor y la otra en el cliente. 
 
-## Consultar la base de datos con 
+## SWR    La instalación es con el comando ->   npm i swr 
+El useSWR es un hook creado por Vercel para obtener datos de API's. este hook primero retorna los datos del cache mientras envia la solicitud de recuperación a la API para retornar la información actualizada.  SWR Incluye consutas en tiempo real.
+Ver la documentación en:   https://swr.vercel.app/es-ES
+
 

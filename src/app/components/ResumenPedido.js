@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image"
+import { toast } from "react-toastify";
 import useQuiosco from "../hooks/useQuiosco";
 import { formatearDinero } from "../helpers";
 
@@ -48,7 +49,10 @@ const ResumenPedido = ({ producto }) => {
             <button
                 type="button"
                 className="bg-red-500 hover:bg-red-700 p-1 sm:p-2 rounded-md text-white text-xs sm:text-sm lg:text-sm font-semibold flex items-center gap-1"
-                onClick={()=>handleEliminarProducto(id)}
+                onClick={()=>{
+                    handleEliminarProducto(id)
+                    toast.success('Producto Eliminado', {theme:'dark'})
+                }}
             >
                 Eliminar
             </button>
